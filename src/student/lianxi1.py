@@ -111,11 +111,32 @@ list列表
     sorted 临时排序 sorted（list）    sorted（list，reverse=True）
     reverse 反转 lsit.reverse（）
     for a in lsit  遍历
+    count（）统计某个元素的个数  list.count（'laitauhua'）
+    index(目标元素，从第几位开始，在第几位结束) 查找某元素的位置返回 下标  list（'lai',2）
+    extend() 扩展列表    list.extend（list2）
     l = list（range（2,10,2）） 创建list
 元组
+    元组不能修改
     tup = ()   tup = (1,)
+    count（）统计
+    index（）查找
+    cmp（tup2，tup2） 比较两个元组
+    min（）
+    max（)
 字典
     dict = ()    dict = {'key1':'value1','key2':'value2'}
+    dict = dict(naem = 'laitaihua',age=18)
+    访问
+        dict[key]
+        dict.get(key)   返回key对应的值
+        dict.get（key，2） 如果不存在key则返回默认值2
+    添加或修改元素
+        dict['anme'] = lai
+        dict.update(name='lai')
+    删除
+        dict.pop（key）
+    判断key是否存在    返回布尔值
+        key in dict
     遍历
         遍历所有键、值
             for key，value in dict.items（）
@@ -154,6 +175,66 @@ list列表
             def fun(name,age,high=180):
                 print('名字是'+name，'年龄是'+age，'身高是'+high)
             fun(age=10,name='Uzi')
-            222222
-        
+        列表实参
+            def fun(list_list):
+                print(list_list[-1])
+            a = []
+            fun(a[:])
+        元组:任意数量的实参      
+            def fun（age,*name） #*是高数python创建个元组
+                print（name）
+            fun（12,'lai','tai','hua'）
+        字典：任意数量的实参
+            def fun（age,**name） #*是高数python创建个字典
+                print（name）
+            fun（12,'lai',name='赖太华'，work='flash'）
+模块
+    导入模块 import module_name
+    调用模块的方法  module_nem.function_name()
+    导入模块中的所有函数 from module_nme import *
+    导入特定函数 module import function1_name1,functionl_name2
+    给导入的函数起名 module import function1_name1 as fun1,functionl_name2 as fun2
+类 class
+    类名首字母大写
+    类需要文档字符串
+        class Dog（）：
+            """ 这是一个狗类 """
+             def __init__(self, name, age):
+            """初始化属性name和age"""
+                self.name = name
+                self.age = age
+            def sit(self):
+                """模拟小狗被命令时蹲下"""
+                print(self.name.title() + " is now sitting.")
+            def roll_over(self):
+                """模拟小狗被命令时打滚"""
+                print(self.name.title() + " rolled over!")
+            # 创建类实例
+            my_dog = Dog（'tony','3'）
+            # 调用类函数
+            my_dog.sit()
+            调用属性
+            my_dog.age            
+    __init__() 初始化 创建类实例时自动调用，
+        __init_()必须包含self形参，且必须放在最前面，它是指向示例本身的引用，每个与类相关联的方法都自动传递实参self（所以在创建类示例时，不用提供传递值）
+继承
+    class Fulei():   #父类，超类  父类必须位于子类前面
+        pass
+    class Zilei（Fulei）：       #子类
+        pass
+    子类
+        在_init_方法内，必须初始化父类所需要的信息，使用super().__init__()方法初始化父类属性
+        子类特有的属性只包含在子类的实例中，父类的实例并不包含
+        重写父类方法
+            方法名与父类一致
+'''
+'''
+字符串
+    unicode  统一码万国码
+        unicode_str = u"我"
+        utf8_str = unicode_str.encode('utf-8') #  使用encode(翻译成中文是编码)方法、utf-8来编码unicode字符
+            print（utf8_str）= '\xe6\x88\x91'
+        utf8_str.decode('utf-8') #  使用decode(翻译成中文是解)方法、utf-8来解码unicode字符
+            print（utf8_str.decode）= u'\u6211'
+    
 '''
