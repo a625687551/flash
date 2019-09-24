@@ -4,25 +4,25 @@
 import pytest
 @pytest.mark.smoke
 class Test_Demo1():
+    @pytest.mark.lai
     def test_case01(self):
-        a= 0+0
-        print(a)
+        assert True
+        assert False
+        print(111)
 
 class Test_Demo2():
     def test_case01(self):
         b= 1+0
-        print(b)
+        print(222)
 
 def test_case01():
     b = 0.5+0.5
-    print(b)
+    print(333)
 @pytest.mark.smoke
-@pytest.mark.hugeui
+@pytest.mark.huigui
 def test_case02():
     c = 1+1
-    print(c)
-"""
-pytest  运行当前路径下所有测试文件的所有测试方法 递归遍历每个子目录
+    print(4444)
 
-
-"""
+if __name__ == '__name__':
+    pytest.main()

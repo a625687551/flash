@@ -309,3 +309,37 @@ list列表
         time.localtime（time.time） 返回本地时间
         
 '''
+"""
+pytest
+    pytest -v 详细显示每个测试方法（用例）的运行结果
+    pytest  运行当前路径下所有测试文件的所有测试方法 递归遍历每个子目录
+    pytest src\student\testpackage\test_testfile01.py   指定路径运行
+    pytest src\student\testpackage\test_testfile01.py::test_case01   指定方法运行
+    pytest --collect-only 即将执行的用例
+    pytest -k  xx 执行包含xx的测试用例
+    @pytest.mark.xx 给类或者方法标记，通过 pytest -m xx来执行带标记的方法
+    pytest -m "xx and yy"   pytest -m "xx and not yy"
+    @pytest.mark.xfail  运行此用例但是预期失败
+    .（passed） 测试通过          F（failed）   测试失败
+    s（skipped）测试未执行        x（xfail）     预期测试失败
+    X（xpass）预期测试失败但是运行
+    E（error） 测试用例之外的代码触发了异常
+    @pytest.mark.parametrize（argnames，argvalues） 参数化数据驱动
+        argnames 用来接收每项数据作为测试用例的参数
+        argvalues   n组测试数据的集合[(),(),()]
+    -s
+    -x 遇到失败用例停止运行
+    --failmax=num 失败num次用例后停止运行
+    --if
+    --ff
+    @pytest.fixture()   标记为fixture函数
+Fixture    执行配置初始化或销毁逻辑
+    UI
+        前置脚本    启动浏览器、访问初始地址
+        收尾脚本    关闭浏览器、关闭数据库连接、关闭文件流
+    API
+        前置脚本    调用关联接口、设置地址、头信息
+        收尾脚步    关闭资源、设置延时
+    
+        
+"""
