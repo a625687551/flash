@@ -28,30 +28,34 @@ json形式字典转字符串
             4添加命名空间
 '''
 # get方法
-def get_shen_id_get():
+def get_1():
     url = 'http://ws.webxml.com.cn/WebServices/WeatherWS.asmx/getSupportCityString?'
     params = {'theRegionCode':'3113'}
-    response = None
     response = requests.get(url=url,params=params)
-    print(response.text)
+def get_2():
     url2 = 'https://www.baidu.com/s?ie=UTF-8&wd=带参数的get'
-    response2 = requests.get(url=url2)
-    print(response2.text)
+    response = requests.get(url=url2)
 
-def get_shi_id_get():
-    url = 'http://ws.webxml.com.cn/WebServices/WeatherWS.asmx/getSupportCityString'
-    params = {'theRegionCode':311101}
-    response = requests.get(url=url, params=params)
-    print(response.text)
-
-def get_shi_id_post():
+#键值对格式
+def post_1():
     url = 'http://ws.webxml.com.cn/WebServices/WeatherWS.asmx/getSupportCityString'
     params = {'theRegionCode': 311101} # 键值对格式
     headers = {'Content-Type':'application/x-www-form-urlencoded'}
     response = requests.post(url=url,data=params,headers=headers)
     print(response.text)
-#raw文本提交
-def get_shi_id_soap():
+def post_2():
+    url = 'http://192.168.0.230:8100/jd/jdList'
+    params = {"job_name":"","department_id":"","submitter_name":"","time_start":"","time_end":"","page_size":100,"page_num":1}  #data字典
+    headers = {'Content-Type':'application/json;charset=UTF-8','X-BY-SESSION-ID':'1569246054_551192c8c71572797efdb0feed40dbd0027c9310_22202'}
+    response = requests.post(url=url,data=params,headers=headers)
+def post_3():
+    url = 'http://192.168.0.230:8100/jd/jdList'
+    params = '{"job_name":"","department_id":"","submitter_name":"","time_start":"","time_end":"","page_size":100,"page_num":1}'   #data是json字符
+    headers = {'Content-Type':'application/json;charset=UTF-8','X-BY-SESSION-ID':'1569246054_551192c8c71572797efdb0feed40dbd0027c9310_22202'}
+    response = requests.post(url=url,data=json.dumps(params),headers=headers)
+
+#raw文本提交 soap
+def post_soap():
     url = 'http://ws.webxml.com.cn/WebServices/WeatherWS.asmx'
     params = '''<?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
@@ -63,7 +67,7 @@ def get_shi_id_soap():
 </soap:Envelope>'''
     headers = {'Content-Type':'text/xml; charset=utf-8'}
     response = requests.post(url=url,data=params,headers=headers)
-    print(response.text)
+
 '''
 单元测试
 Test Case
@@ -86,15 +90,6 @@ Test Runner
                 类需要事先import
         unittest.TextTestRunner（）.run（suite）
         创建run.py
-'''
-
-'''
-字符串：
-    首字母大写：str.title（）   全部大写 str.upper（） 全部小写 str.lower（）
-    拼接 +   乘 str*3
-    换行 \n
-    开头删除空白 lstrip 末尾删除空白 rstrip 两端删除空白 strip
-    
 '''
 '''
 list列表
@@ -188,6 +183,8 @@ list列表
             def fun（age,**name） #*是高数python创建个字典
                 print（name）
             fun（12,'lai',name='赖太华'，work='flash'）
+    递归函数    一个函数在内部调用它自己    把复杂的问题简化
+        
 模块
     导入模块 import module_name
     调用模块的方法  module_nem.function_name()
@@ -236,5 +233,79 @@ list列表
             print（utf8_str）= '\xe6\x88\x91'
         utf8_str.decode('utf-8') #  使用decode(翻译成中文是解)方法、utf-8来解码unicode字符
             print（utf8_str.decode）= u'\u6211'
+    计算特定字符在字符串出现的数量
+        str.count（''）
+    是否以指定字符开头或结尾  返回布尔值
+        str.startswith（''）
+    转化大小写
+        str.lower（）
+        str.upper()
+    查找  find返回首个结果位置，否则返回-1   rfind 后往前
+        str.find（'ab'）
+    替换 str.replace（'ab','b'） 由ab替换为b
+    首字母大写：str.title（）   全部大写 str.upper（） 全部小写 str.lower（）
+    拼接 
+        +   乘 str*3
+        join    把字符/字符串列表（或者可迭代对象均可）拼接起来
+            s1 = ['ab', 'cd', 'ef']
+            print(''.join(s1))  >   'abcdef'
+            print('.'.join(s1))  >   'ab.cd.ef'
+            s2 = 'abcdefg'
+            print('.'.join(s2))  >   'a.b.c.d.e.f.g'
+            
+    换行 \n
+    strip  开头删除空白 lstrip 末尾删除空白 rstrip 两端删除空白 strip  去除指定字符串  s = '\n\t abc  \n\t' ；s.strip('\t')；'\n\t abc  \n'
+    格式化输出
+        print('我是%s人%s' % ('我', '吗'))
+        print('我是{what}人'.format(what='好'))
+        
+'''
+'''
+运算
+    除
+        两个整数相除，得到了是商的整数部分
+        运算时，如果需要准确结果，可以把其中一个转为小数:5 / float(2)
+    取模
+        5.0 % 2   返回1.0
+    幂
+        2**3  等于2*2*2
+    比较
+        <   >   ==  !=  <=  >=
+    逻辑  None 、 空字符串 、空字典 、数字0 在进行逻辑运算时都会被当做 False
+        and与    or或     非not True
+    成员运算
+        in 
+        not in    
+    while 当AAA条件为真的时候，执行XXXX
+        while num>0：
+            pass
     
+'''
+'''
+内置函数
+    isinstance('abc',str)    判断一个对象是否是一个已知的类型
+    abs()
+    all()   判断一个可迭代对象里的元素是否全为真，全为真返回真，否则返回假
+    any()   判断一个可迭代对象，里面的元素全为假时才返回假，只要有一个为真就为真:
+    gettattr()   获取指定对象属性:
+    round()   四舍五入
+    divmod ()   除法函数，但返回商和余数
+'''
+'''
+装饰器--高阶函数--把函数传给函数，再返回函数，也称包装器
+迭代器
+    iter()              记住遍历的位置的对象。
+        list=[1,2,3,4]
+        it = iter(list)    # 创建迭代器对象,第一个元素开始访问，直到所有的元素被访问完结束。迭代器只能往前不会后退。
+            print (next(it))    >>>1  # 输出迭代器的下一个元素
+            print (next(it))    >>>12
+    next()
+生成器         是一个返回迭代器的函数，只能用于迭代操作
+'''
+'''
+常用库
+    time
+        time.time（）返回当前时间戳
+        time.localtime（time.time） 返回本地时间
+        
 '''
