@@ -3,8 +3,10 @@
 # @Author:      LTH
 import requests
 
-url = 'http://ws.webxml.com.cn/WebServices/WeatherWS.asmx/getSupportCityString'
-params = {'theRegionCode': 311101}  # 键值对格式
-headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-response = requests.post(url=url, data=params, headers=headers)
-print(response.text)
+def fun1(a=1,b=2):
+    return fun2()+b
+
+def fun2():
+    return 2
+
+print(fun1())
