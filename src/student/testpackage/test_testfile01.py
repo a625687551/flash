@@ -7,6 +7,7 @@ import json
 @pytest.mark.login1
 @pytest.mark.parametrize('user,pw',[(10000,123456),(10000,123)])
 def test_login(user,pw):
+    print(111111111111111111)
     url = 'http://192.168.0.228:8080/ms/api/auth/signin'
     params = {"login":user,"password":pw}
     headers = {'Content-Type':'application/json;charset=UTF-8','Accept-Language':'zh-CN'}
@@ -16,5 +17,9 @@ def test_login(user,pw):
     assert json.loads(response.text)['data']['profile']['id'] ==10000
     assert str(response.url) == 'http://192.168.0.228:8080/ms/api/auth/signin'
 
+
 if __name__ == '__name__':
     pytest.main()
+
+a = '554545aa'
+print()

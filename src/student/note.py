@@ -67,7 +67,15 @@ def post_soap():
 </soap:Envelope>'''
     headers = {'Content-Type':'text/xml; charset=utf-8'}
     response = requests.post(url=url,data=params,headers=headers)
-
+'''
+requests
+    response.status_code
+    response.url
+    response.headers
+    response.cookies
+    response.text   以文本形式打印网页源码
+    response.content    以字节流形式打印
+'''
 '''
 单元测试
 Test Case
@@ -339,7 +347,5 @@ Fixture    执行配置初始化或销毁逻辑
         收尾脚本    关闭浏览器、关闭数据库连接、关闭文件流
     API
         前置脚本    调用关联接口、设置地址、头信息
-        收尾脚步    关闭资源、设置延时
-    
-        
+        收尾脚步    关闭资源、设置延时  
 """
