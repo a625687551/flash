@@ -188,7 +188,7 @@ list列表
                 print（name）
             fun（12,'lai','tai','hua'）
         字典：任意数量的实参
-            def fun（age,**name） #*是高数python创建个字典
+            def fun（age,**name） #*是告诉python创建个字典
                 print（name）
             fun（12,'lai',name='赖太华'，work='flash'）
     递归函数    一个函数在内部调用它自己    把复杂的问题简化
@@ -349,3 +349,9 @@ Fixture    执行配置初始化或销毁逻辑
         前置脚本    调用关联接口、设置地址、头信息
         收尾脚步    关闭资源、设置延时  
 """
+'''
+charles
+    注册 
+        Registered Name: https://zhile.io
+        License Key: 48891cf209c6d32bf4        
+'''
