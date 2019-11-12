@@ -6,34 +6,34 @@ def loginms():
 
     payload = {"login": "10000", "password": "goflasher"}
     headers = {
-        'Connection': "keep-alive",
-        'Content-Length': "40",
-        'Accept': "application/json, text/plain, */*",
-        'Accept-Language': "zh-CN",
-        'Content-Type': "application/json;charset=UTF-8"
+        "Connection": "keep-alive",
+        "Content-Length": "40",
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "zh-CN",
+        "Content-Type": "application/json;charset=UTF-8"
     }
 
     response = requests.request("POST", url, data=json.dumps(payload), headers=headers, verify=False)
     if response.status_code == 200:
         print("登录超级管理员成功")
-    return json.loads(response.text)['data']['session_id']
+    return json.loads(response.text)["data"]["session_id"]
 
 def update16966():
     #去掉16966的网点经理和主管的角色
-    url = 'https://sapi-training.flashexpress.com/ms/api/setting/store/staffs/16966/edit'
+    url = "https://sapi-training.flashexpress.com/ms/api/setting/store/staffs/16966/edit"
     payload = {"id":16966,"company_name":None,"name":"อาทิตยา ปานทองคำ （测试账号）","organization_name":"Testing（北京团队测试用）","organization_id":"TH01010101","organization_type":1, "department_id":None,"department_name":None,"positions_text":"快递员,仓管,网点出纳",\
                "administrative_area":"กรุงเทพ คลองเตย","mobile":"0123456789","email":"","state":1,"state_text":"在职","hire_date":"2018-01-29","leave_date":"2018-04-30","stop_duties_date":None,"job_title_name":"Van Courier","vehicle":0,"vehicle_text":"Bike","formal":1,\
                "formal_text":"编制","formal_list":[{"code":0,"text":"非编制"},{"code":1,"text":"编制"}],"state_list":[{"code":1,"text":"在职"},{"code":2,"text":"离职"},{"code":3,"text":"停职"}],"positions":[1,2,4],"position_category_list":[{"code":1,"text":"快递员"},\
                 {"code":2,"text":"仓管"},{"code":3,"text":"网点经理"},{"code":4,"text":"网点出纳"},{"code":0,"text":"分配员"},{"code":18,"text":"网点主管"},{"code":21,"text":"区域经理"},{"code":40,"text":"加班车申请员"}]}
     headers = {
-        'Connection': "keep-alive",
-        'Content-Length': "40",
-        'Accept': "application/json, text/plain, */*",
-        'Accept-Language': "zh-CN",
-        'Content-Type': "application/json;charset=UTF-8",
-        'X-MS-SESSION-ID': loginms()
+        "Connection": "keep-alive",
+        "Content-Length": "40",
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "zh-CN",
+        "Content-Type": "application/json;charset=UTF-8",
+        "X-MS-SESSION-ID": loginms()
     }
-    response = requests.request('post',url,data=json.dumps(payload),headers=headers,verify=False)
+    response = requests.request("post",url,data=json.dumps(payload),headers=headers,verify=False)
     if response.status_code == 200:
         print("修改16966成功")
 
@@ -104,10 +104,10 @@ def updata32419():
         "profile_object_key": None
     }
     headers = {
-        'Content-Length': "1406",
-        'Accept': "application/json, text/plain, */*",
-        'Authorization': "Bearer ZDk4MTQxYTU4YTY5NWQ5ZTcxMzAxOTcxMTg1NjIyNjk=",
-        'Content-Type': "application/json;charset=UTF-8"
+        "Content-Length": "1406",
+        "Accept": "application/json, text/plain, */*",
+        "Authorization": "Bearer ZDk4MTQxYTU4YTY5NWQ5ZTcxMzAxOTcxMTg1NjIyNjk=",
+        "Content-Type": "application/json;charset=UTF-8"
     }
 
     response = requests.request("POST", url, data=json.dumps(payload), headers=headers, verify=False)
@@ -181,10 +181,10 @@ def updata32417():
         "profile_object_key": None
     }
     headers = {
-        'Content-Length': "1406",
-        'Accept': "application/json, text/plain, */*",
-        'Authorization': "Bearer ZDk4MTQxYTU4YTY5NWQ5ZTcxMzAxOTcxMTg1NjIyNjk=",
-        'Content-Type': "application/json;charset=UTF-8"
+        "Content-Length": "1406",
+        "Accept": "application/json, text/plain, */*",
+        "Authorization": "Bearer ZDk4MTQxYTU4YTY5NWQ5ZTcxMzAxOTcxMTg1NjIyNjk=",
+        "Content-Type": "application/json;charset=UTF-8"
     }
 
     response = requests.request("POST", url, data=json.dumps(payload), headers=headers, verify=False)
