@@ -1,19 +1,32 @@
-# -*- coding: utf-8 -*-
-# @Time:        2019/8/28 10:33
-# @Author:      LTH
 import requests
+import json
+import pytest
+requests.packages.urllib3.disable_warnings()
 
+#登录
+def test_login(**params ):
+    url = 'http://hr-api-tra.flashexpress.com/client/login'
+    params = {
+        "staff_id": "17245",
+        "pwd": "666666",
+        "os": "HIRS",
+        "lang": "zh-CN"
+    }
+    headers = {
+        'Content-Type': 'application/json'
+    }
+    response = requests.post(url=url, data=json.dumps(params), headers=headers)
+    print(response.text)
+    assert response.status_code == 200
+    assert json.loads(response.text)['data'] is not None
+    return json.loads(response.text)['data']['session_id']
 
-"""
-pytest  运行当前路径下所有测试文件的所有测试方法 递归遍历每个子目录
-pytest src\student\testpackage\test_testfile01.py   指定路径运行
-pytest src\student\testpackage\test_testfile01.py::test_case01   指定方法运行
-
-"""
-def fun1(a=1,b=2):
-    return fun2()+b
-
-def fun2():
-    return 2
-
-print(fun1())
+# 获取静态列表
+def test_getStaticSysList():
+    url = 'http://hr-api-tra.flashexpress.com/sysList/getStaticSysList'
+    headers = {
+        'X-FLE-SESSION-ID': test_login(),
+        'Accept-Language': 'zh-CN'
+    }
+    response = requests.get(url=url, headers=headers)
+    assert len(json.loads(response.text)['data']['datalist']) == 12

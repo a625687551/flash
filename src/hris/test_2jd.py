@@ -6,7 +6,6 @@ import json
 import random
 import pytest
 from src.hris.test_1login import test_login
-from src.method.get_randome import get_str
 
 #查询JD列表
 def test_jdlist(job_name=None,department_id=None,submitter_name=None,time_start=None,time_end=None,page_size=100,page_num=1):
@@ -66,7 +65,8 @@ def test_getreportingLine():
 
 # s随机创建jd
 def test_jdAdd():
-    jd_name = 'auto_jd'+get_str()
+    jd_name = 'auto_jd'+ random.choice('赵钱孙李周吴郑王冯陈褚卫蒋沈韩杨朱秦尤许何吕施张孔曹严华金魏陶姜戚谢邹喻柏水窦章云苏潘葛奚范彭郎') + \
+        random.choice('ABCDEFGHIJKLMNOPQ')
     url = 'http://hr-api-tra.flashexpress.com/jd/jdAdd'
     params = {
         "job_name": jd_name,
@@ -86,48 +86,48 @@ def test_jdAdd():
     return json.loads(response.text)['data']['job_id']
 
 #查看jd详情
-# def test_jobDetail():
-#     url = 'http://hr-api-tra.flashexpress.com/jd/jobDetail'
-#     params = {
-#         "job_id": test_jdAdd()
-#     }
-#     headers = {
-#         'X-FLE-SESSION-ID': test_login(),
-#         'Accept-Language': 'zh-CN'
-#     }
-#     response = requests.post(url=url, data=params, headers=headers)
-#
-# #修改jd
-# def test_modify_jd():
-#     jd_info = test_jdlist()
-#     url = 'http://hr-api-tra.flashexpress.com/jd/jdAdd'
-#     params = {
-#         "job_id": "10039",
-#         "type": 2,
-#         "job_name": "规划局规",
-#         "job_description": "<p>jd说明</p>",
-#         "department_id": "9",
-#         "position_id": null,
-#         "report_superior_id": "3",
-#         "submitter_id": "17245",
-#         "submitter_name": "diweijie",
-#         "state": "1",
-#         "created_at": "2019-08-23 19:33:40",
-#         "updated_at": "2019-08-23 19:33:40",
-#         "report_name": "BeiJing",
-#         "department_name": "Admin & Procurement",
-#         "type_name": "摩托车快递员",
-#         "submitter_department_name": "",
-#         "submitter_job_title": "",
-#         "submitter": "(17245)diweijie  "
-#         }
-#
-#     headers = {
-#         'X-FLE-SESSION-ID': test_login(),
-#         'Accept-Language': 'zh-CN'
-#     }
+def test_jobDetail():
+    url = 'http://hr-api-tra.flashexpress.com/jd/jobDetail'
+    params = {
+        "job_id": test_jdAdd()
+    }
+    headers = {
+        'X-FLE-SESSION-ID': test_login(),
+        'Accept-Language': 'zh-CN'
+    }
+    response = requests.post(url=url, data=params, headers=headers)
 
-#删除jd
+#修改jd
+def test_modify_jd():
+    jd_info = test_jdlist()
+    url = 'http://hr-api-tra.flashexpress.com/jd/jdAdd'
+    params = {
+        "job_id": "10039",
+        "type": 2,
+        "job_name": "规划局规",
+        "job_description": "<p>jd说明</p>",
+        "department_id": "9",
+        "position_id": null,
+        "report_superior_id": "3",
+        "submitter_id": "17245",
+        "submitter_name": "diweijie",
+        "state": "1",
+        "created_at": "2019-08-23 19:33:40",
+        "updated_at": "2019-08-23 19:33:40",
+        "report_name": "BeiJing",
+        "department_name": "Admin & Procurement",
+        "type_name": "摩托车快递员",
+        "submitter_department_name": "",
+        "submitter_job_title": "",
+        "submitter": "(17245)diweijie  "
+        }
+
+    headers = {
+        'X-FLE-SESSION-ID': test_login(),
+        'Accept-Language': 'zh-CN'
+    }
+
+# 删除jd
 def test_jobDel():
     url = 'http://hr-api-tra.flashexpress.com/jd/jobDel'
     params = {
