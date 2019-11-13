@@ -189,7 +189,7 @@ def updata32417():
 
     response = requests.request("POST", url, data=json.dumps(payload), headers=headers, verify=False)
     if response.status_code == 200:
-        print("设置32419仓管成功")
+        print("设置32416仓管成功")
 def chushihua_traning_zhanghao():
     update16966()
     updata32419()
