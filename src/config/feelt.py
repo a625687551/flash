@@ -3,15 +3,29 @@ import os
 import yaml
 
 
-def read_SESSION_yaml_file(sessionid32416):
-    current_path = os.path.abspath(os.path.dirname(__file__))
-    print(current_path)
-    print(current_path + 'feelt.yaml')
-    with open(current_path + '/feelt.yaml', 'r', encoding='utf-8') as feelt:
-        fi = feelt.read()
-        temp = yaml.load(fi, Loader=yaml.FullLoader)
-        print(temp)
-        return temp[sessionid32416]
+def getsessionid(user):
+    # 获取当前脚本所在文件夹路径
+    curPath = os.path.dirname(os.path.realpath(__file__))
+    # 获取yaml文件路径
+    yamlPath = os.path.join(curPath, "feelt.yaml")
 
-read_SESSION_yaml_file("sessionid32416")
+    # open方法打开直接读出来
+    f = open(yamlPath, 'r', encoding='utf-8')
+    cfg = f.read()
 
+    d = yaml.load(cfg, Loader=yaml.FullLoader)  # 用load方法转字典
+    return d[user]
+
+
+def updatasessionid(user, yaml_fi=None):
+    # 获取当前脚本所在文件夹路径
+    curPath = os.path.dirname(os.path.realpath(__file__))
+    # 获取yaml文件路径
+    yamlPath = os.path.join(curPath, "feelt.yaml")
+    with open(yamlPath, 'r', encoding='utf-8') as yaml_file:
+        yaml_fi["32419"] = 546456236454566455644564656454654563654564
+        yaml.dump(yaml_fi, yaml_file)
+
+
+updatasessionid(32419)
+print(getsessionid(32419))
