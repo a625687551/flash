@@ -1,10 +1,9 @@
-import random
-
 import requests
-import pytest
 import json
 
-from src.method.chushihua import chushihua_traning_zhanghao
+import requests
+
+from src.config.feelt import getsessionid
 
 requests.packages.urllib3.disable_warnings()  # 禁用安全请求警告
 
@@ -21,8 +20,8 @@ class TestCase1():
     }
     payload = None
     response = None
-
-    # 获取仓管32416 sessionid
+    """
+    # 登录by,在初始化已实现
     def testLonginCangguang(self, user=32416, password=666666):  # 获取仓管32416 sessionid
 
         url = self.host1 + "api/backyard/v1/auth/new_device_login"
@@ -43,13 +42,14 @@ class TestCase1():
         # 断言是否获取到 sessionid
         assert sessionid is not None
         return sessionid
+"""
 
-    # 检查是否有加班车申请权限
+    # -- 检查是否有加班车申请权限
     def testGetAuditlistPermission(self):  # 检查是否有加班车申请权限
         url = self.host2 + "api/_/audit/getAuditlistPermission"
         headers = {
             "Accept-Language": "zh",
-            "X-BY-SESSION-ID": self.testLonginCangguang(),
+            "X-BY-SESSION-ID": getsessionid(32416),
             "TIMEZONE": "+07:00"
         }
         self.response = requests.request("post", url=url, data=self.payload, headers=headers, verify=False)
@@ -63,12 +63,11 @@ class TestCase1():
         url = self.host2 + "api/_/personinfo/person"
         headers = {
             "Accept-Language": "zh",
-            "X-BY-SESSION-ID": self.testLonginCangguang(),
+            "X-BY-SESSION-ID": getsessionid(32416),
             "TIMEZONE": "+07:00"
         }
         response1 = requests.request("post", url=url, data=self.payload, headers=headers)
-        superiorid = json.loads(response1.text)["data"]["superior_id"]
-        print(superiorid)
+        superiorid = int(json.loads(response1.text)["data"]["superior_id"])
         # 断言直线上级是否为32419
         assert superiorid == 32419
         return None
@@ -78,7 +77,7 @@ class TestCase1():
         url = self.host2 + "api/_/fleet/getCarType"
         headers = {
             "Accept-Language": "zh",
-            "X-BY-SESSION-ID": self.testLonginCangguang(),
+            "X-BY-SESSION-ID": getsessionid(32416),
             "TIMEZONE": "+07:00"
         }
         self.response = requests.request("post", url=url, data=self.payload, headers=headers)
@@ -92,7 +91,7 @@ class TestCase1():
         url = self.host2 + "api/_/fleet/storeList"
         headers = {
             "Accept-Language": "zh",
-            "X-BY-SESSION-ID": self.testLonginCangguang(),
+            "X-BY-SESSION-ID": getsessionid(32416),
             "TIMEZONE": "+07:00"
         }
         self.response = requests.request("post", url=url, data=self.payload, headers=headers)
@@ -105,7 +104,7 @@ class TestCase1():
         url = self.host2 + "api/_/fleet/addFleet"
         headers = {
             'Accept-Language': "zh",
-            'X-BY-SESSION-ID': self.testLonginCangguang(),
+            'X-BY-SESSION-ID': getsessionid(32416),
             'TIMEZONE': "+07:00",
         }
         payload = {
@@ -127,5 +126,5 @@ class TestCase1():
         # 断言是否返回请求成功
 
 
-pp = TestCase1()
-pp.testAddFleet()
+Azhang = TestCase1()
+Azhang.testGetPerson()
