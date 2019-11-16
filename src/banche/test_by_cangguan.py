@@ -1,5 +1,7 @@
-import requests
+import os
+import random
 import json
+import time
 
 import requests
 
@@ -81,10 +83,14 @@ class TestCase1():
             "TIMEZONE": "+07:00"
         }
         self.response = requests.request("post", url=url, data=self.payload, headers=headers)
-        # 断言车辆类型是不是只6种
+
         dataList = json.loads(self.response.text)["data"]["dataList"]
-        print(dataList)
+        CarType = []
+        for i in dataList:
+            CarType.append(i["type"])
+        # 断言车辆类型是不是只6种
         assert len(dataList) == 6
+        return random.choice(CarType)
 
     # 获取网点
     def testGetStoreList(self):  # 获取网点
@@ -94,10 +100,20 @@ class TestCase1():
             "X-BY-SESSION-ID": getsessionid(32416),
             "TIMEZONE": "+07:00"
         }
-        self.response = requests.request("post", url=url, data=self.payload, headers=headers)
-        # 断言网点超过100个
-        assert len(json.loads(self.response.text))["data"]["dataList"] > 100
-        return None
+        response1 = requests.request("post", url=url, data=self.payload, headers=headers)
+        dataList = (json.loads(response1.text)["data"]["dataList"])
+        store_id = []
+        j = 0
+        for i in dataList:
+            j = j+1
+            if j < 50:
+                print(i["store_id"])
+                store_id.append(i["store_id"])
+        print(store_id)
+
+        # 断言网点超过2200个
+        assert len(json.loads(response1.text)["data"]["dataList"]) > 2200
+        return random.choice(store_id)
 
     # 正常申请加班车
     def testAddFleet(self):  # 正常申请加班车
@@ -107,11 +123,12 @@ class TestCase1():
             'X-BY-SESSION-ID': getsessionid(32416),
             'TIMEZONE': "+07:00",
         }
+        reason = "LTH自动创建于"+
         payload = {
-            "car_type": 300,
+            "car_type": self.testGetCarType(),
             "capacity": "35",
             "start_store": "TH01010101",
-            "end_store": "TH47200101",
+            "end_store": self.testGetStoreList(),
             "reason": "www.pgyer.com",
             "arrive_time": "2019-11-14 00:00",
             "image_path": []
@@ -127,4 +144,8 @@ class TestCase1():
 
 
 Azhang = TestCase1()
-Azhang.testGetPerson()
+# Azhang.testGetAuditlistPermission()
+# Azhang.testGetPerson()
+# Azhang.testGetCarType()
+Azhang.testGetStoreList()
+# Azhang.testAddFleet()
