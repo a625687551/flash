@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4986f7ad-f393-4d19-b35d-803ab9517b76" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="4986f7ad-f393-4d19-b35d-803ab9517b76" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,6 +213,7 @@
       <workItem from="1573632680169" duration="16515000" />
       <workItem from="1573800072064" duration="10748000" />
       <workItem from="1573825181061" duration="46000" />
+      <workItem from="1573979619753" duration="247000" />
     </task>
     <task id="LOCAL-00001" summary="修改练习3">
       <created>1568950659600</created>
@@ -349,7 +348,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573808930057</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="1115-1708">
+      <created>1573979852608</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1573979852608</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
