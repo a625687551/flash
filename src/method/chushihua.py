@@ -217,7 +217,4 @@ def chushihua_traning_zhanghao():
     print("初始化账号成功")
     updatasessionid()
     print("经理32419和仓管32416登录成功，已保存sessionid")
-    return None
-
-
-chushihua_traning_zhanghao()
+    return True

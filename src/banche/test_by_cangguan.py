@@ -1,19 +1,19 @@
 import os
 import random
 import json
-import datetime
+import time
 
 import requests
-
+from src.method.chushihua import *
+from src.method.get_randome import *
 from src.config.feelt import getsessionid
 
 requests.packages.urllib3.disable_warnings()  # 禁用安全请求警告
 
+#chushihua_traning_zhanghao()  # 每天都要初始化traning账号
 
-# chushihua_traning_zhanghao()  # 每天都要初始化traning账号
 
-
-class TestCase1():
+class Test_by_cangguang_case1:
     host1 = "https://api-training.flashexpress.com/"
     host2 = "http://backyard-api-tra.flashexpress.com/"
     headers = {
@@ -45,6 +45,10 @@ class TestCase1():
         assert sessionid is not None
         return sessionid
 """
+
+    # 初始化
+    def test_chushihua(self):
+        assert chushihua_traning_zhanghao() == True
 
     # -- 检查是否有加班车申请权限
     def testGetAuditlistPermission(self):  # 检查是否有加班车申请权限
@@ -105,11 +109,9 @@ class TestCase1():
         store_id = []
         j = 0
         for i in dataList:
-            j = j+1
+            j = j + 1
             if j < 50:
-                print(i["store_id"])
                 store_id.append(i["store_id"])
-        print(store_id)
 
         # 断言网点超过2200个
         assert len(json.loads(response1.text)["data"]["dataList"]) > 2200
@@ -123,29 +125,33 @@ class TestCase1():
             'X-BY-SESSION-ID': getsessionid(32416),
             'TIMEZONE': "+07:00",
         }
-        reason = "laitaihua自动创建于"+str(datetime.datetime.today())
+        #  正常创建
+        reason = "laitaihua自动创建于:" + str(time.strftime("%y-%m-%d %H:%M:%S", time.localtime(time.time())))
         payload = {
             "car_type": self.testGetCarType(),
             "capacity": str(random.randint(1, 5000)),
             "start_store": "TH01010101",
             "end_store": self.testGetStoreList(),
             "reason": reason,
-            "arrive_time": "2019-11-14 00:00",
+            "arrive_time": str(time.strftime("%Y-%m-%d %H:%M:00", time.localtime(time.time() + 7200))),
             "image_path": []
         }
-        self.response = requests.request("post", url=url, data=payload, headers=headers)
         # payload = dict(car_type=random.sample([100, 101, 200, 201, 203, 300], 1), capacity="35",
         #                start_store="TH01010101", end_store="TH47200101", reason="www.pgyer.com",
         #                arrive_time="2019-11-14 00:00", image_path=[])
         # self.response = requests.request("post", url=url, data=payload, headers=headers)
-        msg = json.loads(self.response.text)["msg"]
-        print(msg)
-        # 断言是否返回请求成功
+        # 正常创建
+        response1 = requests.request("post", url=url, data=payload, headers=headers)
+        if response1.status_code == 200:
+            print(getdict(response1.text)["msg"])
+        assert getdict(response1.text)["code"] == 1
+        assert getdict(response1.text)["msg"] == "请求成功!"
+        assert getdict(response1.text)["data"] is None
 
 
-Azhang = TestCase1()
-# Azhang.testGetAuditlistPermission()
-# Azhang.testGetPerson()
-# Azhang.testGetCarType()
+Azhang = Test_by_cangguang_case1()
+Azhang.testGetAuditlistPermission()
+Azhang.testGetPerson()
+Azhang.testGetCarType()
 Azhang.testGetStoreList()
-# Azhang.testAddFleet()
+Azhang.testAddFleet()
