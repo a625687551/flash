@@ -4,8 +4,8 @@
     <list default="true" id="4986f7ad-f393-4d19-b35d-803ab9517b76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/banche/test_by_cangguan.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/banche/test_by_cangguan.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/feelt.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/feelt.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/student/lianxi3.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/student/lianxi3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/method/get_randome.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/method/get_randome.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/student/lianxi2.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/student/lianxi2.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +58,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.lianxi3">
+  <component name="RunManager" selected="Python.lianxi2">
     <configuration name="chushihua" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Project_one" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -103,6 +103,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="lianxi2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Project_one" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/student" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/student/lianxi2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="lianxi3" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Project_one" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -117,28 +139,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/student/lianxi3.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="note" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Project_one" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/Spare" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/Spare/note.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -171,11 +171,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.lianxi2" />
         <item itemvalue="Python.lianxi3" />
         <item itemvalue="Python.test_by_cangguan" />
         <item itemvalue="Python.chushihua" />
         <item itemvalue="Python.feelt" />
-        <item itemvalue="Python.note" />
       </list>
     </recent_temporary>
   </component>
@@ -218,6 +218,8 @@
       <workItem from="1573632680169" duration="16515000" />
       <workItem from="1573800072064" duration="11404000" />
       <workItem from="1573884911671" duration="18272000" />
+      <workItem from="1573912508012" duration="66000" />
+      <workItem from="1574049352773" duration="3507000" />
     </task>
     <task id="LOCAL-00001" summary="修改练习3">
       <created>1568950659600</created>
@@ -373,7 +375,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573895697062</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="1115-1958">
+      <created>1573912528069</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1573912528069</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,7 +434,7 @@
     <SUITE FILE_PATH="coverage/Project_one$test_2jd.coverage" NAME="test_2jd Coverage Results" MODIFIED="1569514894974" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/hris" />
     <SUITE FILE_PATH="coverage/Project_one$api.coverage" NAME="api Coverage Results" MODIFIED="1569226880244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Spare" />
     <SUITE FILE_PATH="coverage/Project_one$test_testfile01.coverage" NAME="test_testfile01 Coverage Results" MODIFIED="1569415103487" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/student/testpackage" />
-    <SUITE FILE_PATH="coverage/Project_one$lianxi2.coverage" NAME="lianxi2 Coverage Results" MODIFIED="1573575471102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/student" />
     <SUITE FILE_PATH="coverage/Project_one$note.coverage" NAME="note Coverage Results" MODIFIED="1573809514415" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Spare" />
+    <SUITE FILE_PATH="coverage/Project_one$lianxi2.coverage" NAME="lianxi2 Coverage Results" MODIFIED="1574067864029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/student" />
   </component>
 </project>

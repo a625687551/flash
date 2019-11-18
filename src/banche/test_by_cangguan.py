@@ -1,7 +1,7 @@
 import os
 import random
 import json
-import time
+import datetime
 
 import requests
 
@@ -123,13 +123,13 @@ class TestCase1():
             'X-BY-SESSION-ID': getsessionid(32416),
             'TIMEZONE': "+07:00",
         }
-        reason = "LTH自动创建于"+
+        reason = "laitaihua自动创建于"+str(datetime.datetime.today())
         payload = {
             "car_type": self.testGetCarType(),
-            "capacity": "35",
+            "capacity": str(random.randint(1, 5000)),
             "start_store": "TH01010101",
             "end_store": self.testGetStoreList(),
-            "reason": "www.pgyer.com",
+            "reason": reason,
             "arrive_time": "2019-11-14 00:00",
             "image_path": []
         }
