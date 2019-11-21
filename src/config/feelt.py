@@ -25,10 +25,26 @@ def loginby(user, password):
     return sessionid
 
 
+def loginms(user, password):
+    url = "https://sapi-training.flashexpress.com/ms/api/auth/signin"
+    headers = {
+        "Content-Type": "application/json; charset=UTF-8",
+    }
+    payload = {
+        "login": user,
+        "password": password
+    }
+    response1 = requests.request("post", url=url, data=json.dumps(payload), headers=headers, verify=False)
+    sessionid = json.loads(response1.text)["data"]["session_id"]
+    return sessionid
+
+
 def updatasessionid():
     a = {
         32419: loginby(32419, 666666),
-        32416: loginby(32416, 666666)
+        32416: loginby(32416, 666666),
+        31161: loginms(31161, 666666)
+
     }
     # 获取当前脚本所在文件夹路径
     curPath = os.path.dirname(os.path.realpath(__file__))
