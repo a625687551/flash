@@ -4,19 +4,16 @@ import json
 import time
 import requests
 
-from src.banche.test_by_cangguan import *
 from src.config.feelt import getsessionid
+from src.banche.test_by_gonggong import *
 
-a = Test_by_cangguang_case1()
+
 class Test_by_jingli_case1:
-
     host1 = "https://api-training.flashexpress.com/"
     host2 = "http://backyard-api-tra.flashexpress.com/"
     headers = None
     payload = None
     response = None
-
-
 
     def testGetAuditlistPermission(self):  # 检查是否有加班车申请权限
         print("下面是检查32419是否有加班车申请权限:")
@@ -63,21 +60,18 @@ class Test_by_jingli_case1:
             "car_type": 100,
             "capacity": str(random.randint(1, 5000)),
             "start_store": "TH01010101",
-            "end_store": a.testGetStoreList(),
+            "end_store": testGetStoreList(),
             "reason": reason,
             "arrive_time": str(time.strftime("%Y-%m-%d %H:%M:00", time.localtime(time.time() + 7200))),
             "image_path": []
         }
-        # payload = dict(car_type=random.sample([100, 101, 200, 201, 203, 300], 1), capacity="35",
-        #                start_store="TH01010101", end_store="TH47200101", reason="www.pgyer.com",
-        #                arrive_time="2019-11-14 00:00", image_path=[])
-        # self.response = requests.request("post", url=url, data=payload, headers=headers)
-        response1 = requests.request("post", url=url, data=payload, headers=headers)  # 正常创建
+        response1 = requests.request("post", url=url, data=payload, headers=headers, verify=False)  # 正常创建
         assert json.loads(response1.text)["code"] == 1
         assert json.loads(response1.text)["msg"] == "请求成功!"
         assert json.loads(response1.text)["data"] is None
 
 
-if __name__ == '__main__':
-    jingli1 = Test_by_jingli_case1()
-    jingli1.testAddFleet()
+
+
+jingli = Test_by_jingli_case1()
+jingli.testAddFleet()

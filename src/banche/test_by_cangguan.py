@@ -11,8 +11,9 @@ from src.config.feelt import *
 
 # chushihua_traning_zhanghao()  # 每天都要一次初始化
 requests.packages.urllib3.disable_warnings()  # 禁用安全请求警告
-
 jingli = Test_by_jingli_case1()
+
+
 
 class Test_by_cangguang_case1:
     host1 = "https://api-training.flashexpress.com/"
@@ -129,7 +130,6 @@ class Test_by_cangguang_case1:
         #                start_store="TH01010101", end_store="TH47200101", reason="www.pgyer.com",
         #                arrive_time="2019-11-14 00:00", image_path=[])
         # self.response = requests.request("post", url=url, data=payload, headers=headers)
-
         num1 = jingli.get_waitAuditNum()
         response1 = requests.request("post", url=url, data=payload, headers=headers)  # 正常创建
         num2 = jingli.get_waitAuditNum()
@@ -140,163 +140,163 @@ class Test_by_cangguang_case1:
         assert json.loads(response1.text)["data"] is None
         assert (num2 - num1) == 1
 
-#     # 创建加班车反例
-#     def test_bad_addfleet(self):
-#         print("下面是创建加班车反例:")
-#         url = self.host2 + "api/_/fleet/addFleet"
-#         headers = {
-#             'Accept-Language': "zh",
-#             'X-BY-SESSION-ID': getsessionid(32416),
-#             'TIMEZONE': "+07:00",
-#         }
-#         num1 = jingli.get_waitAuditNum()  # 网点经理的待审批数
-#         reason = "laitaihua自动创建于:" + str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())))
-#
-#         #  1车辆类型为空
-#         print("1车辆类型为空:")
-#         payload1 = {
-#             "car_type": None,
-#             "capacity": str(random.randint(1, 5000)),
-#             "start_store": "TH01010101",
-#             "end_store": self.testGetStoreList(),
-#             "reason": reason,
-#             "arrive_time": str(time.strftime("%Y-%m-%d %H:%M:00", time.localtime(time.time() + 7200))),
-#             "image_path": []
-#         }
-#         response1 = requests.request("post", url=url, data=payload1, headers=headers)
-#         if response1.status_code == 200:
-#             print(json.loads(response1.text)["msg"])
-#         assert json.loads(response1.text)["code"] == 0
-#         assert json.loads(response1.text)["msg"] == "“car_type”必须是整数"
-#         assert num1 == jingli.get_waitAuditNum()
-#
-#         #  2装载数量超5000
-#         print("2装载数量超5000")
-#         payload2 = {
-#             "car_type": self.testGetCarType(),
-#             "capacity": 5001,
-#             "start_store": "TH01010101",
-#             "end_store": self.testGetStoreList(),
-#             "reason": reason,
-#             "arrive_time": str(time.strftime("%Y-%m-%d %H:%M:00", time.localtime(time.time() + 7200))),
-#             "image_path": []
-#         }
-#         response2 = requests.request("post", url=url, data=payload2, headers=headers)
-#         if response1.status_code == 200:
-#             print(json.loads(response2.text)["msg"])
-#         assert json.loads(response2.text)["code"] == 0
-#         assert json.loads(response2.text)["msg"] == "“capacity”必须大于 0 小于等于 5000"
-#         assert num1 == jingli.get_waitAuditNum()
-#
-#         #  3装载数量不填
-#         print("3装载数量不填")
-#         payload3 = {
-#             "car_type": self.testGetCarType(),
-#             "capacity": None,
-#             "start_store": "TH01010101",
-#             "end_store": self.testGetStoreList(),
-#             "reason": reason,
-#             "arrive_time": str(time.strftime("%Y-%m-%d %H:%M:00", time.localtime(time.time() + 7200))),
-#             "image_path": []
-#         }
-#         response3 = requests.request("post", url=url, data=payload3, headers=headers)
-#         if response3.status_code == 200:
-#             print(json.loads(response3.text)["msg"])
-#         assert json.loads(response3.text)["code"] == 0
-#         assert json.loads(response3.text)["msg"] == "“capacity”必须是整数"
-#         assert num1 == jingli.get_waitAuditNum()
-#         # 4始发网点和目的网点一致
-#         print("4始发网点和目的网点一致")
-#         payload4 = {
-#             "car_type": self.testGetCarType(),
-#             "capacity": str(random.randint(1, 5000)),
-#             "start_store": "TH01010101",
-#             "end_store": "TH01010101",
-#             "reason": reason,
-#             "arrive_time": str(time.strftime("%Y-%m-%d %H:%M:00", time.localtime(time.time() + 7200))),
-#             "image_path": []
-#         }
-#         response4 = requests.request("post", url=url, data=payload4, headers=headers)
-#         if response4.status_code == 200:
-#             print(json.loads(response4.text)["msg"])
-#         assert json.loads(response4.text)["code"] == 0
-#         assert json.loads(response4.text)["msg"] == "出发网点与目的网点不能相同"
-#         assert num1 == jingli.get_waitAuditNum()
-#
-#         # 5备注超长
-#         print("5备注超长")
-#         payload5 = {
-#             "car_type": self.testGetCarType(),
-#             "capacity": str(random.randint(1, 5000)),
-#             "start_store": "TH01010101",
-#             "end_store": self.testGetStoreList(),
-#             "reason": reason * 1000,
-#             "arrive_time": str(time.strftime("%Y-%m-%d %H:%M:00", time.localtime(time.time() + 7200))),
-#             "image_path": []
-#         }
-#         response5 = requests.request("post", url=url, data=payload5, headers=headers)
-#         if response4.status_code == 200:
-#             print(json.loads(response5.text)["msg"])
-#         assert json.loads(response5.text)["code"] == 0
-#         assert json.loads(response5.text)["msg"] == "申请原因应该在500个字符以内!"
-#         assert num1 == jingli.get_waitAuditNum()
-#         # 6申请时间没有小于当前时间
-#         print("6申请时间没有大于当前时间")
-#         payload6 = {
-#             "car_type": self.testGetCarType(),
-#             "capacity": str(random.randint(1, 5000)),
-#             "start_store": "TH01010101",
-#             "end_store": self.testGetStoreList(),
-#             "reason": reason,
-#             "arrive_time": str(time.strftime("%Y-%m-%d %H:%M:00", time.localtime(time.time() - 3600))),
-#             "image_path": []
-#         }
-#         response6 = requests.request("post", url=url, data=payload6, headers=headers)
-#         if response6.status_code == 200:
-#             print(json.loads(response6.text)["msg"])
-#         assert json.loads(response6.text)["code"] == 0
-#         assert json.loads(response6.text)["msg"] == "期望到达时间应晚于当前时间"
-#         assert num1 == jingli.get_waitAuditNum()
-#
-#     # 查询仓管的申请和已完成
-#     def test_getlist(self):
-#         print("下面是查询仓管的申请和已完成")
-#         url = self.host2 + "api/_/auditList/getList"
-#         headers = {
-#             "Accept-Language": "zh",
-#             "X-BY-SESSION-ID": getsessionid(32416),
-#             "TIMEZONE": "+07:00"
-#         }
-#         pyload1 = {
-#             "audit_show_type": 1,
-#             "audit_state_type": 1,
-#             "page_num": 1
-#         }
-#         response1 = requests.request("post", url=url, data=pyload1, headers=headers, verify=False)
-#         num1 = len(json.loads(response1.text)["data"]["dataList"])
-#         if json.loads(response1.text)["data"] is not None:
-#             print("查询仓管申请-进行中正常")
-#
-#         pyload2 = {
-#             "audit_show_type": 1,
-#             "audit_state_type": 2,
-#             "page_num": 1
-#         }
-#         response2 = requests.request("post", url=url, data=pyload2, headers=headers, verify=False)
-#         num2 = len(json.loads(response2.text)["data"]["dataList"])
-#         if json.loads(response2.text)["data"] is not None:
-#             print("查询仓管申请-已完成中正常")
-#
-#         return num1, num2
-#
-# #
+    # 创建加班车反例
+    def test_bad_addfleet(self):
+        print("下面是创建加班车反例:")
+        url = self.host2 + "api/_/fleet/addFleet"
+        headers = {
+            'Accept-Language': "zh",
+            'X-BY-SESSION-ID': getsessionid(32416),
+            'TIMEZONE': "+07:00",
+        }
+        num1 = jingli.get_waitAuditNum()  # 网点经理的待审批数
+        reason = "laitaihua自动创建于:" + str(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())))
 
-if __name__ == '__main__':
-    cangguan = Test_by_cangguang_case1()
-    cangguan.testGetAuditlistPermission()
-    cangguan.testGetPerson()
-    cangguan.testGetCarType()
-    cangguan.testGetStoreList()
-    cangguan.testAddFleet()
-    cangguan.test_bad_addfleet()
-    cangguan.test_getlist()
+        #  1车辆类型为空
+        print("1车辆类型为空:")
+        payload1 = {
+            "car_type": None,
+            "capacity": str(random.randint(1, 5000)),
+            "start_store": "TH01010101",
+            "end_store": self.testGetStoreList(),
+            "reason": reason,
+            "arrive_time": str(time.strftime("%Y-%m-%d %H:%M:00", time.localtime(time.time() + 7200))),
+            "image_path": []
+        }
+        response1 = requests.request("post", url=url, data=payload1, headers=headers)
+        if response1.status_code == 200:
+            print(json.loads(response1.text)["msg"])
+        assert json.loads(response1.text)["code"] == 0
+        assert json.loads(response1.text)["msg"] == "“car_type”必须是整数"
+        assert num1 == jingli.get_waitAuditNum()
+
+        #  2装载数量超5000
+        print("2装载数量超5000")
+        payload2 = {
+            "car_type": self.testGetCarType(),
+            "capacity": 5001,
+            "start_store": "TH01010101",
+            "end_store": self.testGetStoreList(),
+            "reason": reason,
+            "arrive_time": str(time.strftime("%Y-%m-%d %H:%M:00", time.localtime(time.time() + 7200))),
+            "image_path": []
+        }
+        response2 = requests.request("post", url=url, data=payload2, headers=headers)
+        if response1.status_code == 200:
+            print(json.loads(response2.text)["msg"])
+        assert json.loads(response2.text)["code"] == 0
+        assert json.loads(response2.text)["msg"] == "“capacity”必须大于 0 小于等于 5000"
+        assert num1 == jingli.get_waitAuditNum()
+
+        #  3装载数量不填
+        print("3装载数量不填")
+        payload3 = {
+            "car_type": self.testGetCarType(),
+            "capacity": None,
+            "start_store": "TH01010101",
+            "end_store": self.testGetStoreList(),
+            "reason": reason,
+            "arrive_time": str(time.strftime("%Y-%m-%d %H:%M:00", time.localtime(time.time() + 7200))),
+            "image_path": []
+        }
+        response3 = requests.request("post", url=url, data=payload3, headers=headers)
+        if response3.status_code == 200:
+            print(json.loads(response3.text)["msg"])
+        assert json.loads(response3.text)["code"] == 0
+        assert json.loads(response3.text)["msg"] == "“capacity”必须是整数"
+        assert num1 == jingli.get_waitAuditNum()
+        # 4始发网点和目的网点一致
+        print("4始发网点和目的网点一致")
+        payload4 = {
+            "car_type": self.testGetCarType(),
+            "capacity": str(random.randint(1, 5000)),
+            "start_store": "TH01010101",
+            "end_store": "TH01010101",
+            "reason": reason,
+            "arrive_time": str(time.strftime("%Y-%m-%d %H:%M:00", time.localtime(time.time() + 7200))),
+            "image_path": []
+        }
+        response4 = requests.request("post", url=url, data=payload4, headers=headers)
+        if response4.status_code == 200:
+            print(json.loads(response4.text)["msg"])
+        assert json.loads(response4.text)["code"] == 0
+        assert json.loads(response4.text)["msg"] == "出发网点与目的网点不能相同"
+        assert num1 == jingli.get_waitAuditNum()
+
+        # 5备注超长
+        print("5备注超长")
+        payload5 = {
+            "car_type": self.testGetCarType(),
+            "capacity": str(random.randint(1, 5000)),
+            "start_store": "TH01010101",
+            "end_store": self.testGetStoreList(),
+            "reason": reason * 1000,
+            "arrive_time": str(time.strftime("%Y-%m-%d %H:%M:00", time.localtime(time.time() + 7200))),
+            "image_path": []
+        }
+        response5 = requests.request("post", url=url, data=payload5, headers=headers)
+        if response4.status_code == 200:
+            print(json.loads(response5.text)["msg"])
+        assert json.loads(response5.text)["code"] == 0
+        assert json.loads(response5.text)["msg"] == "申请原因应该在500个字符以内!"
+        assert num1 == jingli.get_waitAuditNum()
+        # 6申请时间没有小于当前时间
+        print("6申请时间没有大于当前时间")
+        payload6 = {
+            "car_type": self.testGetCarType(),
+            "capacity": str(random.randint(1, 5000)),
+            "start_store": "TH01010101",
+            "end_store": self.testGetStoreList(),
+            "reason": reason,
+            "arrive_time": str(time.strftime("%Y-%m-%d %H:%M:00", time.localtime(time.time() - 3600))),
+            "image_path": []
+        }
+        response6 = requests.request("post", url=url, data=payload6, headers=headers)
+        if response6.status_code == 200:
+            print(+json.loads(response6.text)["msg"])
+        assert json.loads(response6.text)["code"] == 0
+        assert json.loads(response6.text)["msg"] == "期望到达时间应晚于当前时间"
+        assert num1 == jingli.get_waitAuditNum()
+
+    # 查询仓管的申请和已完成
+    def test_getlist(self):
+        print("下面是查询仓管的申请和已完成")
+        url = self.host2 + "api/_/auditList/getList"
+        headers = {
+            "Accept-Language": "zh",
+            "X-BY-SESSION-ID": getsessionid(32416),
+            "TIMEZONE": "+07:00"
+        }
+        pyload1 = {
+            "audit_show_type": 1,
+            "audit_state_type": 1,
+            "page_num": 1
+        }
+        response1 = requests.request("post", url=url, data=pyload1, headers=headers, verify=False)
+        num1 = len(json.loads(response1.text)["data"]["dataList"])
+        if json.loads(response1.text)["data"] is not None:
+            print("查询仓管申请-进行中正常")
+
+        pyload2 = {
+            "audit_show_type": 1,
+            "audit_state_type": 2,
+            "page_num": 1
+        }
+        response2 = requests.request("post", url=url, data=pyload2, headers=headers, verify=False)
+        num2 = len(json.loads(response2.text)["data"]["dataList"])
+        if json.loads(response2.text)["data"] is not None:
+            print("查询仓管申请-已完成中正常")
+
+        return num1, num2
+
+
+
+
+cangguan = Test_by_cangguang_case1()
+cangguan.testGetAuditlistPermission()
+cangguan.testGetPerson()
+cangguan.testGetCarType()
+cangguan.testGetStoreList()
+cangguan.testAddFleet()
+cangguan.test_bad_addfleet()
+cangguan.test_getlist()
