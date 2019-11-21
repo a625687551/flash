@@ -78,7 +78,7 @@ def get_xianlu_shenpi():
     print("下面是查询ms中控人员的待审批和已通过和已驳回的条数")
     heraders = {"Content-Type": "application/json; charset=UTF-8", "X-MS-SESSION-ID": getsessionid(31161)}
     print(heraders)
-    params = {
+    url = {
         "待审批": "https://sapi-training.flashexpress.com/ms/api/fleet/line/approve?serialNo=&applyStartDate=&applyEndDate=&state=7&pageSize=20&pageNum=1",
         "已通过": "https://sapi-training.flashexpress.com/ms/api/fleet/line/approve?serialNo=&applyStartDate=&applyEndDate=&state=2&pageSize=20&pageNum=1",
         "已驳回": "https://sapi-training.flashexpress.com/ms/api/fleet/line/approve?serialNo=&applyStartDate=&applyEndDate=&state=3&pageSize=20&pageNum=1"
@@ -91,7 +91,7 @@ def get_xianlu_shenpi():
 
     for key in url:
         print(url[key])
-        response = requests.request("get", url=url[key], heraders=heraders, verify=False)
+        response = requests.request("GET", url=url[key], heraders=heraders, verify=False)
 
         print(json.loads(response.text)["data"]["pagination"]["total_count"])
         items["key"] = json.loads(response.text)["data"]["pagination"]["total_count"]
