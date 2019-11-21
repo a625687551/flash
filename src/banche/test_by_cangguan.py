@@ -123,7 +123,7 @@ class TestCase1():
             'X-BY-SESSION-ID': getsessionid(32416),
             'TIMEZONE': "+07:00",
         }
-        reason = "LTH自动创建于"+
+        reason = "LTH自动创建于"
         payload = {
             "car_type": self.testGetCarType(),
             "capacity": "35",
