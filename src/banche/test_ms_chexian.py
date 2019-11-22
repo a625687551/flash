@@ -10,17 +10,19 @@ requests.packages.urllib3.disable_warnings()  # 禁用安全请求警告
 
 
 class Test_ms_central_control_approval:
-    """"中控审批 """
+    """"中控审批操作 """
     host = "https://sapi-training.flashexpress.com/"
     headers = {"X-MS-SESSION-ID": getsessionid(31161)}
     payload = None
     response = None
 
-    def test_get_stor(self):
+    # ms查询网点
+    def test_get_store(self):
         url = self.host + "ms/api/setting/store/manager/van/line"
         response1 = requests.request("GET", url=url, headers=self.headers, verify=False)
         assert len(json.loads(response1.text)["data"]) > 2000
 
+    # 组合查询审批列表
     def test_query(self):  # 组合查询审批列表
         url = self.host + "ms/api/fleet/line/approve"
         params = {"serialNo": "VA5267241431040", "applyStartDate": "", "applyEndDate": "", "sortingNo": "B",
@@ -29,6 +31,3 @@ class Test_ms_central_control_approval:
         response1 = requests.request("get", url=url, params=params, headers=self.headers, verify=False)
         assert json.loads(response1.text)["data"]["items"] is not None
 
-
-ji = Test_ms_central_control_approval()
-ji.test_get_stor()

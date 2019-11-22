@@ -9,10 +9,12 @@ from src.config.feelt import *
 
 # chushihua_traning_zhanghao()  # 每天都要一次初始化
 requests.packages.urllib3.disable_warnings()  # 禁用安全请求警告
+
 jingli = Test_by_jingli_case1()
 
 
 class Test_by_cangguang_case1:
+    """仓管的操作"""
     host1 = "https://api-training.flashexpress.com/"
     host2 = "http://backyard-api-tra.flashexpress.com/"
     headers = {
@@ -264,12 +266,12 @@ class Test_by_cangguang_case1:
             "X-BY-SESSION-ID": getsessionid(32416),
             "TIMEZONE": "+07:00"
         }
-        pyload1 = {
+        payload1 = {
             "audit_show_type": 1,
             "audit_state_type": 1,
             "page_num": 1
         }
-        response1 = requests.request("post", url=url, data=pyload1, headers=headers, verify=False)
+        response1 = requests.request("post", url=url, data=payload1, headers=headers, verify=False)
         if json.loads(response1.text)["data"] is not None:
             print("查询仓管申请-进行中正常")
         d = {"type": json.loads(response1.text)["data"]["dataList"][0]["type"], "id": json.loads(response1.text)["data"]["dataList"][0]["id"]}
