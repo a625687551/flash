@@ -245,7 +245,7 @@ class Test_by_cangguang_case1:
             "start_store": "TH01010101",
             "end_store": self.testGetStoreList(),
             "reason": reason,
-            "arrive_time": str(time.strftime("%Y-%m-%d %H:%M:00", time.localtime(time.time() - 3600))),
+            "arrive_time": str(time.strftime("%Y-%m-%d %H:%M:00", time.localtime(time.time() - 7200))),
             "image_path": []
         }
         response6 = requests.request("post", url=url, data=payload6, headers=headers)
