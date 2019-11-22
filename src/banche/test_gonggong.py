@@ -85,6 +85,7 @@ def test_cangguan_AddFleet():
     assert json.loads(response1.text)["data"] is None
 
 
+# 获取32419待审批条数
 def test_get_waitAuditNum():
     print("下面32419是获取32419待审批条数:")
     url = "http://backyard-api-tra.flashexpress.com/api/_/audit/waitAuditNum"
@@ -117,3 +118,5 @@ def test_get_xianlu_shenpi():
 
     assert total_count is not None
     return total_count  # {'待审批': 42, '已通过': 68, '已驳回': 6}
+
+
