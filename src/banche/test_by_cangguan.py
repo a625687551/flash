@@ -7,12 +7,9 @@ from src.banche.test_by_testjingli import *
 from src.method.chushihua import *
 from src.config.feelt import *
 
-
-
 # chushihua_traning_zhanghao()  # 每天都要一次初始化
 requests.packages.urllib3.disable_warnings()  # 禁用安全请求警告
 jingli = Test_by_jingli_case1()
-
 
 
 class Test_by_cangguang_case1:
@@ -253,14 +250,14 @@ class Test_by_cangguang_case1:
         }
         response6 = requests.request("post", url=url, data=payload6, headers=headers)
         if response6.status_code == 200:
-            print(+json.loads(response6.text)["msg"])
+            print(json.loads(response6.text)["msg"])
         assert json.loads(response6.text)["code"] == 0
         assert json.loads(response6.text)["msg"] == "期望到达时间应晚于当前时间"
         assert num1 == jingli.get_waitAuditNum()
 
-    # 查询仓管的申请和已完成
-    def test_getlist(self):
-        print("下面是查询仓管的申请和已完成")
+    # 查询仓管申请的进行中
+    def test_getlist1(self):
+        print("下面是查询仓管的申请")
         url = self.host2 + "api/_/auditList/getList"
         headers = {
             "Accept-Language": "zh",
@@ -273,30 +270,79 @@ class Test_by_cangguang_case1:
             "page_num": 1
         }
         response1 = requests.request("post", url=url, data=pyload1, headers=headers, verify=False)
-        num1 = len(json.loads(response1.text)["data"]["dataList"])
         if json.loads(response1.text)["data"] is not None:
             print("查询仓管申请-进行中正常")
+        d = {"type": json.loads(response1.text)["data"]["dataList"][0]["type"], "id": json.loads(response1.text)["data"]["dataList"][0]["id"]}
+        # 返回最上面一个申请的 type和id
+        return d
 
-        pyload2 = {
+    # 查询仓管的已完成
+    def test_getlist2(self):
+        url = self.host2 + "api/_/auditList/getList"
+        headers = {
+            "Accept-Language": "zh",
+            "X-BY-SESSION-ID": getsessionid(32416),
+            "TIMEZONE": "+07:00"
+        }
+        pyload1 = {
             "audit_show_type": 1,
             "audit_state_type": 2,
             "page_num": 1
         }
-        response2 = requests.request("post", url=url, data=pyload2, headers=headers, verify=False)
-        num2 = len(json.loads(response2.text)["data"]["dataList"])
-        if json.loads(response2.text)["data"] is not None:
+        response1 = requests.request("post", url=url, data=pyload1, headers=headers, verify=False)
+        if json.loads(response1.text)["data"] is not None:
             print("查询仓管申请-已完成中正常")
+        d = {"type": json.loads(response1.text)["data"]["dataList"][0]["type"], "id": json.loads(response1.text)["data"]["dataList"][0]["id"]}
+        # 返回最上面一个申请的 type和id
+        return d
 
-        return num1, num2
+    # 查看我的审批 中申请记录的详情
+    def test_check(self):
+        url = self.host2 + "api/_/auditlist/detail"
+        headers = {
+            "Accept-Language": "zh",
+            "X-BY-SESSION-ID": getsessionid(32416),
+            "TIMEZONE": "+07:00"
+        }
+        id_type = self.test_getlist1()
+        payload = {
+            "id": id_type["id"],
+            "type": id_type["type"],
+            "isCommit": 1
+        }
+        response1 = requests.request("post", url=url, headers=headers, data=payload)
+        assert json.loads(response1.text)["data"]["detail"] is not None
+        return json.loads(response1.text)["data"]["head"]["id"]
+
+    # 仓管申请加班车后撤销
+    def test_revoke(self):
+        self.testAddFleet()  # 先建个申请
+        url = self.host2 + "api/_/fleet/updateFleet"
+        headers = {
+            "Accept-Language": "zh",
+            "X-BY-SESSION-ID": getsessionid(32416),
+            "TIMEZONE": "+07:00"
+        }
+        payload = {
+            "status": 4,
+            "audit_id": self.test_check(),
+            "reject_reason": ""
+        }
+        #撤销前查询进行中的第一个申请
+        no1 = self.test_getlist1()
+        response = requests.request("post", url=url, data=payload, headers=headers)
+        # 撤销后查询进行中的第一申请
+        no2 = self.test_getlist2()
+        #两者相等则证明作废成功
+        assert no1 == no2
 
 
-
-
-cangguan = Test_by_cangguang_case1()
-cangguan.testGetAuditlistPermission()
-cangguan.testGetPerson()
-cangguan.testGetCarType()
-cangguan.testGetStoreList()
-cangguan.testAddFleet()
-cangguan.test_bad_addfleet()
-cangguan.test_getlist()
+# cangguan = Test_by_cangguang_case1()
+# # cangguan.testGetAuditlistPermission()
+# # cangguan.testGetPerson()
+# # cangguan.testGetCarType()
+# # cangguan.testGetStoreList()
+# # cangguan.testAddFleet()
+# # cangguan.test_bad_addfleet()
+# # cangguan.test_getlist()
+# cangguan.test_revoke()

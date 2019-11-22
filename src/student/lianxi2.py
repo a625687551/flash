@@ -3,8 +3,6 @@ requests.packages.urllib3.disable_warnings()  # 禁用安全请求警告
 url = "https://sapi-training.flashexpress.com/ms/api/fleet/line/approve"
 
 querystring = {"serialNo":"","applyStartDate":"","applyEndDate":"","state":"2","pageSize":"20","pageNum":"1"}
-
-payload = "{\n    \"login\": 32416,\n    \"password\": 666666,\n    \"clientid\": \"867245035784787520002063200047\",\n    \"clientsd\": \"1566022761465\",\n    \"os\": \"android\",\n    \"version\": \"1.2.8\"\n}"
 headers = {
     'Connection': "keep-alive",
     'Accept': "application/json, text/plain, */*",
@@ -21,7 +19,7 @@ headers = {
     'cache-control': "no-cache"
     }
 
-response = requests.request("GET", url, data=payload, headers=headers, params=querystring, verify=False)
+response = requests.request("GET", url, headers=headers, params=querystring, verify=False)
 # response = requests.get(url, data=payload, headers=headers, params=querystring,verify=False)
 
 print(response.text)

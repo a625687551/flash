@@ -15,6 +15,7 @@ class Test_by_jingli_case1:
     payload = None
     response = None
 
+    # 检查是否有加班车申请权限
     def testGetAuditlistPermission(self):  # 检查是否有加班车申请权限
         print("下面是检查32419是否有加班车申请权限:")
         url = self.host2 + "api/_/audit/getAuditlistPermission"
@@ -31,6 +32,7 @@ class Test_by_jingli_case1:
         assert fleet == 1
         return None
 
+    # 获取32419待审批条数
     def get_waitAuditNum(self):
         print("下面32419是获取32419待审批条数:")
         url = self.host2 + "api/_/audit/waitAuditNum"
@@ -46,6 +48,7 @@ class Test_by_jingli_case1:
         assert num > 1
         return num
 
+    # 正常申请加班车
     def testAddFleet(self):  # 正常申请加班车
 
         print("下面是正常申请加班车")
@@ -69,6 +72,8 @@ class Test_by_jingli_case1:
         assert json.loads(response1.text)["code"] == 1
         assert json.loads(response1.text)["msg"] == "请求成功!"
         assert json.loads(response1.text)["data"] is None
+
+
 
 
 
